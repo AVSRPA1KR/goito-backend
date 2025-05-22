@@ -7,20 +7,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
-import org.hibernate.annotations.GenericGenerator;
-
-import java.util.UUID;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -50,33 +49,32 @@ public class User {
     @JoinColumn(name = "preferred_size_id")
     @JsonProperty("preferred_size")
     private Size preferredSize;
-    
+
     @JsonIgnore
     private String password;
-    
+
     @Column(name = "google_id")
     private String googleId;
-    
+
     @Column(name = "facebook_id")
     private String facebookId;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "auth_provider")
     private AuthProvider authProvider;
-    
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-    
+
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-    
+
     @OneToMany(mappedBy = "user")
     private List<UserAddress> addresses = new ArrayList<>();
-    
+
     public enum AuthProvider {
         LOCAL, GOOGLE, FACEBOOK
     }
-
 
     public UUID getUserId() {
         return userId;
@@ -133,59 +131,59 @@ public class User {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    
+
     public String getPassword() {
         return password;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getGoogleId() {
         return googleId;
     }
-    
+
     public void setGoogleId(String googleId) {
         this.googleId = googleId;
     }
-    
+
     public String getFacebookId() {
         return facebookId;
     }
-    
+
     public void setFacebookId(String facebookId) {
         this.facebookId = facebookId;
     }
-    
+
     public AuthProvider getAuthProvider() {
         return authProvider;
     }
-    
+
     public void setAuthProvider(AuthProvider authProvider) {
         this.authProvider = authProvider;
     }
-    
+
     public List<UserAddress> getAddresses() {
         return addresses;
     }
-    
+
     public void setAddresses(List<UserAddress> addresses) {
         this.addresses = addresses;
     }
-    
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-    
+
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-    
+
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
-    
+
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
